@@ -1,4 +1,4 @@
-# Azle Hello World custom
+# Azle Hello World custom 2
 
 - [Installation](#installation)
 - [Deployment](#deployment)
