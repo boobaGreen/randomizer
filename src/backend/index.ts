@@ -43,14 +43,23 @@ export default Server(() => {
 
     // Estrapola la seconda parte dell'array
     const secondPart = uint8array.slice(1);
-
+    console.log("second part", secondPart);
     // Estrapola il primo valore
-    const primoValore = uint8array[0];
+    // const primoValore = uint8array[0];
 
-    const randomNumberInRange =
-      (primoValore * (req.body.participants - 1)) / 255 + 1;
+    let finalArray = [];
 
-    res.send([Math.round(randomNumberInRange)]);
+    for (let i = 0; i < req.body.draws; i++) {
+      finalArray[i] = Math.round(
+        (secondPart[i] * (req.body.participants - 1)) / 255 + 1
+      );
+    }
+
+    // const randomNumberInRange = Math.round(
+    //   (primoValore * (req.body.participants - 1)) / 255 + 1
+    // );
+    console.log("finale array", finalArray);
+    res.send(finalArray);
   });
 
   app.use(express.static("/dist"));
