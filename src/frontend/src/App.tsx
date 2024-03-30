@@ -28,6 +28,7 @@ function App() {
         `${import.meta.env.VITE_CANISTER_ORIGIN}/randomness`,
         {
           method: "POST",
+          headers: [["Content-Type", "application/json"]],
           body: JSON.stringify(query),
         }
       );

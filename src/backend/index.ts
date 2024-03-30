@@ -28,7 +28,7 @@ export default Server(() => {
   });
 
   app.post("/randomness", async (req: Request<any, any, typeof query>, res) => {
-    console.log("req", req);
+    // console.log("req", req);
     console.log("req.body", req.body);
     // console.log("req : ", req);
     const response = await fetch("icp://aaaaa-aa/raw_rand");
@@ -50,7 +50,7 @@ export default Server(() => {
     const randomNumberInRange =
       (primoValore * (req.body.participants - 1)) / 255 + 1;
 
-    res.send([randomNumberInRange]);
+    res.send([Math.round(randomNumberInRange)]);
   });
 
   app.use(express.static("/dist"));
