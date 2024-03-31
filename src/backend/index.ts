@@ -6,32 +6,35 @@ let db = {
 };
 
 let query = {
-  participants: 1,
+  participants: 256,
   draws: 1,
 };
 
 export default Server(() => {
   const app = express();
 
-  console.log("back start ");
   app.use(express.json());
 
   app.post("/randomness", async (req: Request<any, any, typeof query>, res) => {
     try {
-      console.log("req.body", req.body);
       if (req.body.participants < 1 || req.body.participants > 256) {
         throw new Error("Partcipants number must be 1-256");
+      }
+      if (req.body.draws < 1 || req.body.draws > 30) {
+        throw new Error("Draws number must be 1-30");
       }
       const response = await fetch("icp://aaaaa-aa/raw_rand");
       const responseJson = await response.json();
       const stringify = jsonStringify(responseJson);
       const parsedObject = JSON.parse(stringify);
       const uint8array = parsedObject["__uint8array__"];
-      const secondPart = uint8array.slice(1);
+      const mainPart = uint8array.slice(1);
       let finalArray = [];
-      for (let i = 0; i < req.body.draws; i++) {
+      const finalDraws = req.body.draws || query.draws;
+      const finalParticipants = req.body.participants || query.participants;
+      for (let i = 0; i < finalDraws; i++) {
         finalArray[i] = Math.round(
-          (secondPart[i] * (req.body.participants - 1)) / 255 + 1
+          (mainPart[i] * (finalParticipants - 1)) / 255 + 1
         );
       }
       console.log("finale array", finalArray);
