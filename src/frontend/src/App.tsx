@@ -1,4 +1,5 @@
 import { useState } from "react";
+import bgsx from "../public/gradient_1_sx.jpg";
 
 function App() {
   const [query, setQuery] = useState({
@@ -61,48 +62,76 @@ function App() {
   }
 
   return (
-    <div className="text-[var(--color-custom)]">
-      <header className="mx-auto cl:max-w-[1550px] xl:px-[100px]">
-        <nav className="flex w-full items-center justify-between px-6 py-5 md:px-4 xl:px-0 xl:oy-8">
+    <div className="text-[var(--color-custom)] ">
+      <header className="ml-10 mt-10">
+        <nav className="flex w-full items-center justify-between ">
           <a className="flex items-end gap-2 cursor-pointer">
-            <div className="flex w-[175px] md:w-[180px] xl:w-[205px] h-auto text-xl">
-              <h2>🎲</h2>
-              <h2 className="text-white">RANDOMIZER</h2>
+            <div className="flex  h-auto text-xl">
+              <h1>🎲</h1>
+              <h1 className="text-white">RANDOMIZER</h1>
             </div>
           </a>
         </nav>
       </header>
-      <div>
-        <input
-          className="bg-transparent"
-          id="participants"
-          type="number"
-          value={query.participants.toString()}
-          min={1}
-          max={255}
-          onChange={(e) => setParticipants(parseInt(e.target.value))}
-        />
-
-        <input
-          className="bg-transparent"
-          id="draws"
-          type="number"
-          value={query.draws.toString()}
-          min={1}
-          max={30}
-          onChange={(e) => setDraws(parseInt(e.target.value))}
-        />
-
-        <button onClick={handleGenerateRandomNumbers}>
-          Genera numeri casuali
+      <img
+        className="absolute left-[-250px] top-[-400px] z-[-1] md:left-[-450px] md:top-[-1000px] lg:left-[-400px] lg:top-[100px]"
+        src={bgsx}
+      />
+      <div className="mt-16 mx-auto flex flex-col w-1/3 justify-center content-center">
+        <div className="flex justify-center content-center gap-2 ">
+          <div className="w-1/3 flex justify-end">
+            <label className="text-white" htmlFor="participants">
+              particpants:{" "}
+            </label>
+          </div>
+          <input
+            className="bg-transparent w-1/4 text-[var(--color-custom)]"
+            id="participants"
+            name="participants"
+            type="number"
+            value={query.participants.toString()}
+            min={1}
+            max={256}
+            onChange={(e) => setParticipants(parseInt(e.target.value))}
+          />
+        </div>
+        <div className="flex justify-center content-center gap-2 mt-4">
+          <div className="w-1/3 flex justify-end">
+            <label className="text-white" htmlFor="draws">
+              draws:{" "}
+            </label>
+          </div>
+          <input
+            className="bg-transparent w-1/4 text-[var(--color-custom)]"
+            id="draws"
+            name="draws"
+            type="number"
+            value={query.draws.toString()}
+            min={1}
+            max={30}
+            onChange={(e) => setDraws(parseInt(e.target.value))}
+          />
+        </div>
+        <button
+          className="mt-6 mb-4 mx-auto
+          w-1/3 
+          border-solid
+          border-2
+          border-[var(--color-custom)]"
+          onClick={handleGenerateRandomNumbers}
+        >
+          Generate
         </button>
 
         {loading ? (
-          <p>Generazione in corso...</p>
+          <p className="mt-2 mx-auto">Generation in progress...</p>
         ) : (
-          <ul>
+          <ul className="mx-auto mt-2">
             {randomNumbers.map((number, index) => (
-              <li key={index}>{number}</li>
+              <li key={index}>
+                <span className="text-white">{index + 1} :</span>
+                <span className="text-[var(--color-custom)]">{number}</span>
+              </li>
             ))}
           </ul>
         )}
