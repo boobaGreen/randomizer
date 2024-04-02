@@ -31,9 +31,9 @@ function App() {
           "Il numero di partecipanti deve essere compreso tra 1 e 256."
         );
       }
-      if (query.draws < 1 || query.draws > 30) {
+      if (query.draws < 1 || query.draws > 32) {
         throw new Error(
-          "Il numero di estrazioni deve essere compreso tra 1 e 30."
+          "Il numero di estrazioni deve essere compreso tra 1 e 32."
         );
       }
 
@@ -85,7 +85,7 @@ function App() {
             </label>
           </div>
           <input
-            className="bg-transparent w-1/4 text-[var(--color-custom)]"
+            className="bg-transparent w-auto text-[var(--color-custom)]"
             id="participants"
             name="participants"
             type="number"
@@ -102,7 +102,7 @@ function App() {
             </label>
           </div>
           <input
-            className="bg-transparent w-1/4 text-[var(--color-custom)]"
+            className="bg-transparent w-auto text-[var(--color-custom)]"
             id="draws"
             name="draws"
             type="number"
@@ -114,7 +114,8 @@ function App() {
         </div>
         <button
           className="mt-6 mb-4 mx-auto
-          w-1/3 
+          w-auto
+          p-2
           border-solid
           border-2
           border-[var(--color-custom)]"

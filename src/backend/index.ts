@@ -20,8 +20,8 @@ export default Server(() => {
       if (req.body.participants < 1 || req.body.participants > 256) {
         throw new Error("Partcipants number must be 1-256");
       }
-      if (req.body.draws < 1 || req.body.draws > 30) {
-        throw new Error("Draws number must be 1-30");
+      if (req.body.draws < 1 || req.body.draws > 32) {
+        throw new Error("Draws number must be 1-32");
       }
       const response = await fetch("icp://aaaaa-aa/raw_rand");
       const responseJson = await response.json();

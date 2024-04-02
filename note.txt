@@ -1,1 +1,12 @@
 randomNumberInRange = (randomNumber * (rangeEnd - rangeStart) / 255) + rangeStart;
+
+allora sembra che raw_rand restituisca 31 bumeri casuali bytes e non 32 come da doc.
+inoltre puo' ripetere le chiamate se non pulito.
+
+vogli fare menu con :
+
+- pure quello gia' fatto 
+- pure con aggiunta di gia' estratti (quindi draws max = partecipants)
+- cards che imita carte e controlla se gia' uscita , prepara un mazzo mischiato , shuffle!
+- estrazione da lista (nomi) o pura ma che tiene conto delle gia' uscite (al contrario del primo)
+- tombola ?
