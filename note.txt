@@ -1,3 +1,10 @@
+-------------da gestire errore per la prossima seessione se parametri da frontend sabgliati non ce messaggio di nessun tipo
+-------------da curl il mesaggio ce ma molto generico :Si è verificato un errore durante la generazione dei numeri casuali
+
+
+
+
+
 randomNumberInRange = (randomNumber * (rangeEnd - rangeStart) / 255) + rangeStart;
 
 allora sembra che raw_rand restituisca 31 bumeri casuali bytes e non 32 come da doc.
