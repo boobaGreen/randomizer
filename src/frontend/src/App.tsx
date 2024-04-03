@@ -7,7 +7,9 @@ function App() {
     participants: 256,
   });
   const [randomNumbers, setRandomNumbers] = useState([]);
+  const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [firstTime, setFirstTime] = useState(true);
 
   const setDraws = (value: number) => {
     setQuery((prevQuery) => ({
@@ -46,8 +48,12 @@ function App() {
         }
       );
       const data = await response.json();
-      if (data) {
-        setRandomNumbers(data);
+      if (data.main) {
+        if (!firstTime) {
+          setFirstTime(true);
+        }
+        setRandomNumbers(data.main);
+        setCounter(data.count);
       } else {
         console.error("La risposta non contiene un array di numeri casuali.");
       }
@@ -124,18 +130,31 @@ function App() {
           Generate
         </button>
 
-        {loading ? (
-          <p className="mt-2 mx-auto">Generation in progress...</p>
-        ) : (
-          <ul className="mx-auto mt-2">
-            {randomNumbers.map((number, index) => (
-              <li key={index}>
-                <span className="text-white">{index + 1} :</span>
-                <span className="text-[var(--color-custom)]">{number}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+        {randomNumbers.length > 0 || firstTime ? (
+          loading ? (
+            <p className="mt-2 mx-auto">Generation in progress...</p>
+          ) : (
+            <>
+              <ul className="mx-auto mt-2">
+                {randomNumbers.map((number, index) => (
+                  <li key={index}>
+                    <span className="text-white">{index + 1} :</span>
+                    <span className="text-[var(--color-custom)]">{number}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mx-auto mt-6 text-white">
+                <p>
+                  <span className="mr-1">This app has been used:</span>
+                  <span className="mr-1 text-[var(--color-custom)]">
+                    {counter}
+                  </span>
+                  <span>times</span>
+                </p>
+              </div>
+            </>
+          )
+        ) : null}
       </div>
     </div>
   );

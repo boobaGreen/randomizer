@@ -5,7 +5,7 @@ let query = {
   participants: 256,
   draws: 32,
 };
-
+let counter = 0;
 export default Server(() => {
   const app = express();
 
@@ -38,7 +38,11 @@ export default Server(() => {
           Math.round((uint8array[i] * (finalParticipants - 1)) / 255) + 1;
       }
       // console.log("finale array", finalArray);
-      res.send(finalArray);
+      //tempppppppppppppppppppppppp
+      counter += 1;
+      res.send({ main: finalArray, count: counter });
+
+      // res.send(finalArray);
     } catch (error) {
       console.error(
         "Si è verificato un errore durante la generazione dei numeri casuali:",
