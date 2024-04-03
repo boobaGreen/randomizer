@@ -3,7 +3,7 @@ import bgsx from "../public/gradient_1_sx.jpg";
 
 function App() {
   const [query, setQuery] = useState({
-    draws: 30,
+    draws: 32,
     participants: 256,
   });
   const [randomNumbers, setRandomNumbers] = useState([]);
@@ -108,7 +108,7 @@ function App() {
             type="number"
             value={query.draws.toString()}
             min={1}
-            max={30}
+            max={32}
             onChange={(e) => setDraws(parseInt(e.target.value))}
           />
         </div>

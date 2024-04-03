@@ -5,8 +5,16 @@ inoltre puo' ripetere le chiamate se non pulito.
 
 vogli fare menu con :
 
-- pure quello gia' fatto 
-- pure con aggiunta di gia' estratti (quindi draws max = partecipants)
-- cards che imita carte e controlla se gia' uscita , prepara un mazzo mischiato , shuffle!
-- estrazione da lista (nomi) o pura ma che tiene conto delle gia' uscite (al contrario del primo)
-- tombola ?
+- puro (senza storico) esempio tira 3 dadi (participant: 6 draw: 3)
+
+- con storici esclusi esempi tombola (partcipants :90 - draw :90) o carte francesi (particpants 52 - draws 52 ) o per sorteggi su twitch ecc ecc
+
+- grafico distribuzione 
+
+
+curl -X POST -H "Content-Type: application/json" -d "{ }" http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "participants": 10,
+  "draws": 5
+}' http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness

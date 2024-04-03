@@ -1,13 +1,9 @@
 import { jsonStringify, Server } from "azle";
 import express, { Request } from "express";
 
-let db = {
-  hello: "",
-};
-
 let query = {
   participants: 256,
-  draws: 1,
+  draws: 32,
 };
 
 export default Server(() => {
@@ -25,19 +21,23 @@ export default Server(() => {
       }
       const response = await fetch("icp://aaaaa-aa/raw_rand");
       const responseJson = await response.json();
+      console.log("responseJson pura :", responseJson);
       const stringify = jsonStringify(responseJson);
+      console.log("stringify :", stringify);
       const parsedObject = JSON.parse(stringify);
+      console.log("parseObj", parsedObject);
       const uint8array = parsedObject["__uint8array__"];
-      const mainPart = uint8array.slice(1);
+      console.log("uint8array", uint8array);
+      // const mainPart = uint8array.slice(1);
+      // console.log("mainPart",mainPart);
       let finalArray = [];
       const finalDraws = req.body.draws || query.draws;
       const finalParticipants = req.body.participants || query.participants;
       for (let i = 0; i < finalDraws; i++) {
-        finalArray[i] = Math.round(
-          (mainPart[i] * (finalParticipants - 1)) / 255 + 1
-        );
+        finalArray[i] =
+          Math.round((uint8array[i] * (finalParticipants - 1)) / 255) + 1;
       }
-      console.log("finale array", finalArray);
+      // console.log("finale array", finalArray);
       res.send(finalArray);
     } catch (error) {
       console.error(
