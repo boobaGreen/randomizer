@@ -130,30 +130,29 @@ function App() {
           Generate
         </button>
 
-        {randomNumbers.length > 0 || firstTime ? (
-          loading ? (
-            <p className="mt-2 mx-auto">Generation in progress...</p>
-          ) : (
-            <>
-              <ul className="mx-auto mt-2">
-                {randomNumbers.map((number, index) => (
-                  <li key={index}>
-                    <span className="text-white">{index + 1} :</span>
-                    <span className="text-[var(--color-custom)]">{number}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mx-auto mt-6 text-white">
-                <p>
-                  <span className="mr-1">This app has been used:</span>
-                  <span className="mr-1 text-[var(--color-custom)]">
-                    {counter}
-                  </span>
-                  <span>times</span>
-                </p>
-              </div>
-            </>
-          )
+        {loading ? (
+          <p className="mt-2 mx-auto">Generation in progress...</p>
+        ) : null}
+        {!loading && randomNumbers.length > 0 ? (
+          <>
+            <ul className="mx-auto mt-2">
+              {randomNumbers.map((number, index) => (
+                <li key={index}>
+                  <span className="text-white">{index + 1} :</span>
+                  <span className="text-[var(--color-custom)]">{number}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mx-auto mt-6 text-white">
+              <p>
+                <span className="mr-1">This app has been used:</span>
+                <span className="mr-1 text-[var(--color-custom)]">
+                  {counter}
+                </span>
+                <span>times</span>
+              </p>
+            </div>
+          </>
         ) : null}
       </div>
     </div>
