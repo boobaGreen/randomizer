@@ -18,3 +18,25 @@ html {
   /* font-size: 62.5%; */
   background-color: black;
 }
+
+.number-wheel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 20px;
+  perspective: 1000px;
+}
+
+.number {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.selected {
+  color: red;
+}
+
+.number:hover {
+  transform: scale(1.2);
+}

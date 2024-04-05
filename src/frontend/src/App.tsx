@@ -9,7 +9,6 @@ function App() {
   const [randomNumbers, setRandomNumbers] = useState([]);
   const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [firstTime, setFirstTime] = useState(true);
 
   const setDraws = (value: number) => {
     setQuery((prevQuery) => ({
@@ -27,18 +26,6 @@ function App() {
   async function handleGenerateRandomNumbers() {
     setLoading(true);
     try {
-      // Validazione dei valori dei parametri
-      if (query.participants < 1 || query.participants > 256) {
-        throw new Error(
-          "Il numero di partecipanti deve essere compreso tra 1 e 256."
-        );
-      }
-      if (query.draws < 1 || query.draws > 32) {
-        throw new Error(
-          "Il numero di estrazioni deve essere compreso tra 1 e 32."
-        );
-      }
-
       const response = await fetch(
         `${import.meta.env.VITE_CANISTER_ORIGIN}/randomness`,
         {
@@ -49,13 +36,8 @@ function App() {
       );
       const data = await response.json();
       if (data.main) {
-        if (!firstTime) {
-          setFirstTime(true);
-        }
         setRandomNumbers(data.main);
         setCounter(data.count);
-      } else {
-        console.error("La risposta non contiene un array di numeri casuali.");
       }
     } catch (error) {
       console.error(
@@ -96,8 +78,6 @@ function App() {
             name="participants"
             type="number"
             value={query.participants.toString()}
-            min={1}
-            max={256}
             onChange={(e) => setParticipants(parseInt(e.target.value))}
           />
         </div>
@@ -113,11 +93,10 @@ function App() {
             name="draws"
             type="number"
             value={query.draws.toString()}
-            min={1}
-            max={32}
             onChange={(e) => setDraws(parseInt(e.target.value))}
           />
         </div>
+
         <button
           className="mt-6 mb-4 mx-auto
           w-auto

@@ -22,6 +22,6 @@ vogli fare menu con :
 curl -X POST -H "Content-Type: application/json" -d "{ }" http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness
 
 curl -X POST -H "Content-Type: application/json" -d '{
-  "participants": 10,
+  "participants": 300,
   "draws": 5
 }' http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness
