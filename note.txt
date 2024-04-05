@@ -1,22 +1,14 @@
--------------da gestire errore per la prossima seessione se parametri da frontend sabgliati non ce messaggio di nessun tipo
--------------da curl il mesaggio ce ma molto generico :Si è verificato un errore durante la generazione dei numeri casuali
+-footer 
+-text size media query
+-f o n t
+- manuale/info
 
-
-
+https://www.linkedin.com/in/claudio-dall-ara-730aa0302/
 
 
 randomNumberInRange = (randomNumber * (rangeEnd - rangeStart) / 255) + rangeStart;
 
-allora sembra che raw_rand restituisca 31 bumeri casuali bytes e non 32 come da doc.
-inoltre puo' ripetere le chiamate se non pulito.
 
-vogli fare menu con :
-
-- puro (senza storico) esempio tira 3 dadi (participant: 6 draw: 3)
-
-- con storici esclusi esempi tombola (partcipants :90 - draw :90) o carte francesi (particpants 52 - draws 52 ) o per sorteggi su twitch ecc ecc
-
-- grafico distribuzione 
 
 
 curl -X POST -H "Content-Type: application/json" -d "{ }" http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness
