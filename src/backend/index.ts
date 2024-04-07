@@ -44,7 +44,7 @@ export default Server(() => {
     } catch (error) {
       if (error instanceof Error) {
         if (
-          error.message.includes("range number") ||
+          error.message.includes("Range number") ||
           error.message.includes("Draws number")
         ) {
           console.log("error.message :", error.message);
