@@ -1,6 +1,6 @@
 import { useState } from "react";
 import bgsx from "../public/gradient_1_sx.jpg";
-import { response } from "express";
+// import { response } from "express";
 
 function App() {
   const [query, setQuery] = useState({
@@ -67,7 +67,9 @@ function App() {
           <a className="flex items-end gap-2 cursor-pointer">
             <div className="flex  h-auto text-xl">
               <h1>🎲</h1>
-              <h1 className="text-white">RANDOMIZER</h1>
+              <h1 className="text-white text-xl md:text-2xl lg:text-3xl ">
+                RANDOMIZER
+              </h1>
             </div>
           </a>
         </nav>
@@ -77,10 +79,10 @@ function App() {
         src={bgsx}
       />
       <div className="mt-16 mx-auto flex flex-col w-1/3 justify-center content-center">
-        <div className="flex justify-center content-center gap-2 ">
-          <div className="w-16 flex ">
+        <div className="flex justify-center content-center gap-4 text-base md:text-xl lg:text-2xl">
+          <div className="min-w-16 flex text-base md:text-xl lg:text-2xl ">
             <label className="text-white" htmlFor="range">
-              range:{" "}
+              RANGE:{" "}
             </label>
           </div>
           <input
@@ -92,10 +94,10 @@ function App() {
             onChange={(e) => setrange(parseInt(e.target.value))}
           />
         </div>
-        <div className="flex justify-center content-center gap-2 mt-4">
-          <div className="w-16 flex ">
+        <div className="flex justify-center content-center gap-4 mt-4 text-base md:text-xl lg:text-2xl">
+          <div className="min-w-16 flex ">
             <label className="text-white" htmlFor="draws">
-              draws:{" "}
+              DRAWS:{" "}
             </label>
           </div>
           <input
@@ -112,12 +114,14 @@ function App() {
           className="mt-6 mb-4 mx-auto
           w-auto
           p-2
-          border-solid
-          border-2
-          border-[var(--color-custom)]"
+          bg-[var(--color-custom)]
+          text-black
+          hover:bg-[var(--color-custom-hover)]
+          text-2xl md:text-3Xl lg:text-4xl
+         "
           onClick={handleGenerateRandomNumbers}
         >
-          Generate
+          GENERATE
         </button>
         {error && (
           <div className="mx-auto mt-2 text-red-500">{error.message}</div>
@@ -126,27 +130,44 @@ function App() {
           <p className="mt-2 mx-auto">Generation in progress...</p>
         ) : null}
         {!loading && randomNumbers.length > 0 ? (
-          <>
-            <ul className="mx-auto mt-2">
-              {randomNumbers.map((number, index) => (
-                <li key={index}>
-                  <span className="text-white">{index + 1} :</span>
-                  <span className="text-[var(--color-custom)]">{number}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mx-auto mt-6 text-white">
-              <p>
-                <span className="mr-1">This app has been used:</span>
-                <span className="mr-1 text-[var(--color-custom)]">
-                  {counter}
-                </span>
-                <span>times</span>
-              </p>
-            </div>
-          </>
-        ) : null}
+          <ul className="mx-auto mt-2 min-h-[100vh]">
+            {randomNumbers.map((number, index) => (
+              <li key={index}>
+                <span className="text-white">{index + 1} :</span>
+                <span className="text-[var(--color-custom)]">{number}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="min-h-[100vh]"></div>
+        )}
       </div>
+
+      <footer className="mt-20 text-white">
+        <div className="border-t-[1px] border-white">
+          <div className="ml-20 mb-20 flex justify-between">
+            <div className="mt-4">
+              Claudio Dall'Ara - https://github.com/boobaGreen
+              https://www.linkedin.com/in/claudio-dall-ara-730aa0302/
+            </div>
+            <div className="mt-4 mr-12">
+              {counter <= 0 ? (
+                <>
+                  <span></span>
+                </>
+              ) : (
+                <>
+                  <span className="mr-1">This app has been used:</span>
+                  <span className="mr-1 text-[var(--color-custom)]">
+                    {counter}
+                  </span>
+                  <span>times</span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

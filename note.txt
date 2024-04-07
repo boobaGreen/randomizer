@@ -1,14 +1,19 @@
--footer 
--text size media query
+-footer da finire con social
+
 -f o n t
-- manuale/info
+
+- info e link
+
+-facciamo 2 pagine?
+
+-deploy
+
+-pubblica 
 
 https://www.linkedin.com/in/claudio-dall-ara-730aa0302/
 
 
 randomNumberInRange = (randomNumber * (rangeEnd - rangeStart) / 255) + rangeStart;
-
-
 
 
 curl -X POST -H "Content-Type: application/json" -d "{ }" http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness
