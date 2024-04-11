@@ -35,6 +35,7 @@ Please remember that Azle is in beta and thus it may have unknown security vulne
 ## Installation :screwdriver:
 
 The azle documentation provides compatibility with mac linux and windows via wsl and wsl2. The first attempts with wsl brought me various problems, among which in particular it created me with every deployment, even locally it consumed my hd and ended up completely exhausting the disk, after a couple of complete restores, however, given the inconvenience of wsl, I decided to try\re linux mint for this project, spoiler: currently I have decided to use it on all my computers without any more windows partition. I recommend working with azle on linux or mac but avoid wsl at least as a personal experience.
+ps: other permission problems when I did fetches from the browser or terminal compared to the local host running on wsl2
 
 For the basic installation of the environment please view the azle documentation (see above)
 
