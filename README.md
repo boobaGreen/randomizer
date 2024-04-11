@@ -9,6 +9,29 @@ Please remember that Azle is in beta and thus it may have unknown security vulne
 - Azle does not yet have multiple independent security reviews/audits
 - Azle does not yet have many live, successful, continuously operating applications deployed to ICP
 
+## :boom: Try Now!
+
+[StudyBuddyHub](https://studybuddyhub.netlify.app/)
+
+## :hammer: Tools
+
+![Nodejs](https://img.shields.io/badge/Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript-125x28.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
+![React](https://img.shields.io/badge/-React-61DBFB?style=for-the-badge&labelColor=black&logo=react&logoColor=61DBFB)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-092749?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4&labelColor=000000)
+![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![VSCode](https://img.shields.io/badge/Visual_Studio-0078d7?style=for-the-badge&logo=visual%20studio&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)<br>
+![ICP logo](/icp.jpeg "icp logo")
+
+- **INTERNET COMPUTER PROTOCOL**
+- **AZLE** <br>
+- **DFINITY command-line execution environment (dfx)** <br>
+
 ## Installation :screwdriver:
 
 The azle documentation provides compatibility with mac linux and windows via wsl and wsl2. The first attempts with wsl brought me various problems, among which in particular it created me with every deployment, even locally it consumed my hd and ended up completely exhausting the disk, after a couple of complete restores, however, given the inconvenience of wsl, I decided to try\re linux mint for this project, spoiler: currently I have decided to use it on all my computers without any more windows partition. I recommend working with azle on linux or mac but avoid wsl at least as a personal experience.
@@ -180,6 +203,12 @@ in this case the fetch from front end to back end will be:
 
 if you deploy to mainnet, comment on this part!
 
+to deploy on local the dfx command is :
+
+```
+ dfx deploy
+```
+
 ### Mainent
 
 It took me a while to understand but then it works like this (thanks Jordan):
@@ -215,6 +244,12 @@ in my case I tried and with the help of Jordan I finally entered the data as in 
 
 https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/
 
+```
+
+to deploy on mainet the dfx command is :
+
+```
+ dfx deploy --network ic
 ```
 
 ## Gitignore :mute:
