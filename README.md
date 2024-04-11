@@ -263,3 +263,14 @@ node_modules
 .dfx
 
 ```
+
+## [MIT](https://choosealicense.com/licenses/mit/)
+
+## :e-mail: Contact Me
+
+Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
+You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
+
+```
+
+```
