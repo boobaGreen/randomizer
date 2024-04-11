@@ -11,7 +11,7 @@ Please remember that Azle is in beta and thus it may have unknown security vulne
 
 ## :boom: Try Now!
 
-[StudyBuddyHub](https://studybuddyhub.netlify.app/)
+[RANDOMIZER](https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/)
 
 ## :hammer: Tools
 
