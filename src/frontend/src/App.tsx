@@ -1,5 +1,8 @@
 import { useState } from "react";
 import bgsx from "../public/gradient_1_sx.jpg";
+import Footer from "./Footer";
+import Info from "./Info";
+
 // import { response } from "express";
 
 function App() {
@@ -27,15 +30,30 @@ function App() {
   };
   async function handleGenerateRandomNumbers() {
     setLoading(true);
+
+    // mainnet deploy
+
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_CANISTER_ORIGIN}/randomness`,
+        `https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/randomness`,
         {
           method: "POST",
           headers: [["Content-Type", "application/json"]],
           body: JSON.stringify(query),
         }
       );
+
+      // local deploy
+
+      // try {
+      //   const response = await fetch(
+      //     `${import.meta.env.VITE_CANISTER_ORIGIN}/randomness`,
+      //     {
+      //       method: "POST",
+      //       headers: [["Content-Type", "application/json"]],
+      //       body: JSON.stringify(query),
+      //     }
+      //   );
       if (!response.ok) {
         // Se la risposta HTTP non è OK, ottieni il messaggio di errore dal corpo della risposta
         const errorMessage = await response.text();
@@ -78,10 +96,12 @@ function App() {
         className="absolute left-[-250px] top-[-300px] z-[-1] md:left-[-350px] md:top-[-400] lg:left-[-400px] lg:top-[-600px]"
         src={bgsx}
       />
-      <div className="mt-16 mx-auto flex flex-col w-1/3 justify-center content-center">
-        <div className="flex justify-center content-center gap-4 text-base md:text-xl lg:text-2xl">
-          <div className="min-w-16 flex text-base md:text-xl lg:text-2xl ">
-            <label className="text-white" htmlFor="range">
+      <div className="flex flex-col mt-16 mx-auto w-1/3 justify-center content-center">
+        <div className="flex justify-center content-center gap-4 text-base md:text-xl lg:text-2xl align-items-center">
+          <div className="flex text-base md:text-xl lg:text-2xl ">
+            <label className="text-white w-20" htmlFor="range">
+              {" "}
+              {/* Aggiunta larghezza fissa */}
               RANGE:{" "}
             </label>
           </div>
@@ -94,9 +114,11 @@ function App() {
             onChange={(e) => setrange(parseInt(e.target.value))}
           />
         </div>
-        <div className="flex justify-center content-center gap-4 mt-4 text-base md:text-xl lg:text-2xl">
-          <div className="min-w-16 flex ">
-            <label className="text-white" htmlFor="draws">
+        <div className="flex justify-center content-center gap-4 mt-4 text-base md:text-xl lg:text-2xl align-items-center">
+          <div className="flex text-base md:text-xl lg:text-2xl ">
+            <label className="text-white w-20" htmlFor="draws">
+              {" "}
+              {/* Aggiunta larghezza fissa */}
               DRAWS:{" "}
             </label>
           </div>
@@ -117,7 +139,7 @@ function App() {
           bg-[var(--color-custom)]
           text-black
           hover:bg-[var(--color-custom-hover)]
-          text-2xl md:text-3Xl lg:text-4xl
+          text-xl md:text-2Xl lg:text-3xl
          "
           onClick={handleGenerateRandomNumbers}
         >
@@ -142,29 +164,25 @@ function App() {
           <div className="min-h-[100vh]"></div>
         )}
       </div>
-
+      <Info></Info>
+      <div className="mt-4  flex justify-center">
+        <div className="border-t-[1px] border-white"></div>
+        {counter <= 0 ? (
+          <>
+            <span></span>
+          </>
+        ) : (
+          <>
+            <span className="mr-1 text-white">This app has been used:</span>
+            <span className="mr-1 text-[var(--color-custom)]">{counter}</span>
+            <span className="text-white">times</span>
+          </>
+        )}
+      </div>
       <footer className="mt-20 text-white">
         <div className="border-t-[1px] border-white">
-          <div className="ml-20 mb-20 flex justify-between">
-            <div className="mt-4">
-              Claudio Dall'Ara - https://github.com/boobaGreen
-              https://www.linkedin.com/in/claudio-dall-ara-730aa0302/
-            </div>
-            <div className="mt-4 mr-12">
-              {counter <= 0 ? (
-                <>
-                  <span></span>
-                </>
-              ) : (
-                <>
-                  <span className="mr-1">This app has been used:</span>
-                  <span className="mr-1 text-[var(--color-custom)]">
-                    {counter}
-                  </span>
-                  <span>times</span>
-                </>
-              )}
-            </div>
+          <div className="mb-10 mt-10 flex flex-col ">
+            <Footer></Footer>
           </div>
         </div>
       </footer>

@@ -1,1 +1,0 @@
-  <div className="bg-[url('../public/randomizer-white.svg')] w-[175px] md:w-[180px] xl:w-[205px] h-[50px]"></div>

@@ -1,5 +1,6 @@
 import { jsonStringify, Server } from "azle";
 import express, { Request } from "express";
+import cors from "cors"; // Importa il pacchetto cors
 
 let query = {
   range: 256,
@@ -8,6 +9,13 @@ let query = {
 let counter = 0;
 export default Server(() => {
   const app = express();
+
+  // Usa il middleware cors
+  // app.use(
+  //   cors({
+  //     origin: "https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/",
+  //   })
+  // );
 
   app.use(express.json());
 
@@ -55,12 +63,6 @@ export default Server(() => {
   });
 
   app.use(express.static("/dist"));
-  // set route for all no match routes
-  // app.all("*", (req, res, next) => {
-  //   next(new AppError(`Can't find${req.originalUrl} on this server`, 404));
-  // });
-
-  //Global Error Handling Middleware - 4 argument express recognize is a error middleware
 
   return app.listen();
 });
