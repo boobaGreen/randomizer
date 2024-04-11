@@ -9,5 +9,5 @@
 
 
 
-randomNumberInRange = (randomNumber * (rangeEnd - rangeStart) / 255) + rangeStart;
+
 
