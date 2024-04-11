@@ -1,22 +1,13 @@
 
 
-- info e link
+- link in ogni scritta icp italia ecc ecc azle ecc ecc demergents lab jordan last
 
--facciamo 2 pagine?
+- video
 
--deploy
 
--pubblica 
 
-https://www.linkedin.com/in/claudio-dall-ara-730aa0302/
+
 
 
 randomNumberInRange = (randomNumber * (rangeEnd - rangeStart) / 255) + rangeStart;
 
-
-curl -X POST -H "Content-Type: application/json" -d "{ }" http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness
-
-curl -X POST -H "Content-Type: application/json" -d '{
-  "participants": 300,
-  "draws": 5
-}' http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/randomness

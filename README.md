@@ -41,9 +41,16 @@ there is also a counter variable (the number of times the app has been used) be 
 
 The demo app, in addition to exporting the raw_rand canister management functionality outside of icp, adds the possibility of shortening the length of the array via the "draws" parameter and, even more interestingly, I believe, it narrows the range from which to extract the numbers via the "range" parameter, for example if I insert "6" as "range" and "10" as "draws" I will have an array of 10 random numbers ranging from 1 to 6, so for example let's simulate 10 throws of a 6-sided die.
 
+I used this formula to create the number to return in the range chosen by the user:
+
+```
+randomNumberInRange = (randomNumber \* (rangeEnd - rangeStart) / 255) + rangeStart
+```
+
 ## Curl :loudspeaker:
 
-the backend can also be called directly via a standalone fetch without using the provided front end. for example using curl we generate a simulation of 10 rolls of a 6-sided die:
+the backend can also be called directly via a standalone fetch without using the provided front end.
+for example using curl we generate a simulation of 10 rolls of a 6-sided die:
 
 ```
 curl -X POST \
@@ -52,24 +59,172 @@ curl -X POST \
  https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/randomness
 ```
 
+technically the canister management is invoked for the raw_rand function with a post and not a get it is an internal feature, so I wanted to leave this functionality to have the same call both from my frontend and from curl. Furthermore, it is underlined that we are interacting with the blockchain technically with a post on the backend without any registration or wallet on the part of the user
+
+## Backend :dna:
+
+For the back end, Node Express is used with settings similar to the one based on azle hello_world.
+
+the variables are:
+
+```
+let query = {
+range: 256,
+draws: 32,
+};
+```
+
+which sets the default parameters, if one or more of these parameters are absent in the calls, these will be used, otherwise the input parameters will be used.
+
+Also a
+
+```
+counter
+```
+
+memory variable that will increment by one every time the backend is used successfully. in the event of redeploy, this value will be reset to zero if a specific procedure is not carried out to maintain its value. non-temporary but persistent memory variables are also being developed but given that at the time of development of this app this function on Azle is undergoing major updates I have not looked into it further
+
+the call that our back end makes to the central canister is always the same and is the real fulcrum of the app:
+
+```
+ const response = await fetch("icp://aaaaa-aa/raw_rand");
+```
+
+then we normalize the response, handle the errors, use the formula for any range adjustments and respond by sending back an object composed like this:
+
+```
+  res.send({ main: finalArray, count: counter });
+```
+
+## Endpoint
+
+see the "deploy" section to understand what should be inserted as a path before the endpoint
+Currently there is only one endpoint :
+
+/randomness
+
+I would like to add a testing endpoint just to test if the backend is online
+
+I had also thought of an endpoint to give answers with numbers that had never been released (to simulate a tombolo or a lottery) but it became more complex, you can still add this functionality downstream and continue to use the randomizer upstream.
+
+## Frontend :space_invader:
+
+for the front end I used react and typescript. here we move away from the wicked base of azle where another language is used.
+
+I developed an app as I would normally do with react vite starting from the src folder of the basic azle hello world project. first of course I delete the already existing frontend folder and then from src I create my react project normally giving it the name "frontend" so that I insert it at the right point in our azle project. here I did my own thing because I couldn't find any basic documentation and I opened the package.json file then I integrated it with that of the main project on the root and a single package.json file came out that looks like this:
+
+```
+{
+  "scripts": {
+    "build": "cd src/frontend && VITE_CANISTER_ORIGIN=http://$(dfx canister id backend).localhost:8000 vite build",
+    "pretest": "ts-node --transpile-only --ignore=false --skip-project test/pretest.ts",
+    "test": "ts-node --transpile-only --ignore=false --skip-project test/test.ts"
+  },
+  "dependencies": {
+    "azle": "^0.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.12"
+  }
+}
+```
+
+I don't know if this is the correct procedure that the Azle developers have in mind. Corrections or comments are welcome here too.
+I also think that the configuration files of e.g. lint, vite, tailwind, between front root and backend are not managed perfectly and it would be interesting to have comments or open an analysis about it. as in the current configuration let's say it seems to work for me!
+
+## Style :lipstick:
+
+For style management I used tailwind
+
 ## Deploy :electric_plug:
 
 ### Local
 
+I left the settings of the azle book example project "hello_world" locally so in the package.json file you can see that:
+
+```
+
+"build": "cd src/frontend && VITE_CANISTER_ORIGIN=http://$(dfx canister id backend).localhost:8000 vite build"
+
+```
+
+in this case the fetch from front end to back end will be:
+
+```
+
+        const response = await fetch(
+          `${import.meta.env.VITE_CANISTER_ORIGIN}/randomness`,
+          {
+            method: "POST",
+            headers: [["Content-Type", "application/json"]],
+            body: JSON.stringify(query),
+          }
+        );
+
+```
+
+if you deploy to mainnet, comment on this part!
+
 ### Mainent
+
+It took me a while to understand but then it works like this (thanks Jordan):
+
+```
+
+https://[canister_id].raw.icp0.io
+
+```
+
+In our case I hardcoded the call on the frontend :
+
+```
+
+const response = await fetch(
+`https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/randomness`,
+{
+method: "POST",
+headers: [["Content-Type", "application/json"]],
+body: JSON.stringify(query),
+}
+);
+
+```
+
+if you deploy to local, comment on this part!
+
+naturally I couldn't do this before having done at least a deployment on mainnet, there's probably a way to do it automatically like we did for the local but at the moment I don't know how to do it, if anyone knows please add it or let me know thanks in advance
+
+in my case I tried and with the help of Jordan I finally entered the data as in the example considering that my frontend is accessible at the address:
+
+```
+
+https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/
+
+```
 
 ## Gitignore :mute:
 
 don't forget to add to your git ignore in the main root:
 
 ```
+
 node_modules
 .azle
 .dfx
+
 ```
-
-## Backend :dna:
-
-## Frontend :space_invader:
-
-## Style :lipstick:

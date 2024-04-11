@@ -10,19 +10,12 @@ let counter = 0;
 export default Server(() => {
   const app = express();
 
-  // Usa il middleware cors
-  // app.use(
-  //   cors({
-  //     origin: "https://kwjpy-liaaa-aaaap-ahaea-cai.raw.icp0.io/",
-  //   })
-  // );
-
   app.use(express.json());
 
   app.post("/randomness", async (req: Request<any, any, typeof query>, res) => {
     try {
       if (req.body.range < 1 || req.body.range > 256) {
-        throw new Error("range number must be between 1 and 256");
+        throw new Error("Range number must be between 1 and 256");
       }
       if (req.body.draws < 1 || req.body.draws > 32) {
         throw new Error("Draws number must be between 1 and 32");
