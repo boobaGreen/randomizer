@@ -1,3 +1,9 @@
+node_modules
+
+.azle
+.dfx
+
+
 # Logs
 logs
 *.log
@@ -8,10 +14,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 
-node_modules
 
-.azle
-.dfx
 
 src/dist
 dist
