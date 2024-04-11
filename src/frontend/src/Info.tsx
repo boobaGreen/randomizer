@@ -7,29 +7,37 @@ function Info(): JSX.Element {
             <span className="text-white">
               This app is a demo studio project for{" "}
             </span>
+          </p>
+          <p>
             <span className="text-[var(--color-custom)]">
               ICP Typescript Master Class{" "}
             </span>
+          </p>
+          <p>
             <span className="text-white">for a first approach with </span>
+          </p>
+          <p>
             <span className="text-[var(--color-custom)]">AZLE </span>
           </p>
           <p className="w-auto">
             <span className="text-white">thanks to </span>
+          </p>
+          <p>
             <span className="text-[var(--color-custom)]">ICP ITALIA </span>
+          </p>
+          <p>
             <span className="text-white">and </span>
+          </p>
+          <p>
             <span className="text-[var(--color-custom)]">DEMERGENTS LABS </span>
-            <span className="text-white">and </span>
+          </p>
+          <span className="text-white">and </span>
+          <p />
+          <p>
             <span className="text-[var(--color-custom)]">JORDAN LAST </span>
           </p>
         </div>
-        <div>
-          <p className="w-auto mt-8">
-            <span className="text-white ">
-              the app uses the "management canister" and its random number
-              generation function: "raw_rand"{" "}
-            </span>
-          </p>
-        </div>
+        <div></div>
         <div>
           <p className="w-auto mt-8">
             <span className="text-white ">More info in the readme file : </span>
